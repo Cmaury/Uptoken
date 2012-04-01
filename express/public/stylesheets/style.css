@@ -1,8 +1,7 @@
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-}
-
-a {
-  color: #00B7FF;
-}
+.brick{height:35px;}
+.center{text-align:center;}
+.aligncenter4{padding-left:32%;}
+.aligncenter8{padding-left:14%;}
+.aligncenter12{padding-left:5%;}
+.strike {text-decoration:line-through;}
+.tall{height:480px;overflow: scroll;}
