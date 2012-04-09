@@ -7,5 +7,8 @@
     , "jade": ">= 0.0.1"
     , "mongodb": ">=0.9.6-7"
     , "mongoose": ">=2.5.0"
+    , "everyauth": ">=0.2.28"
+    , "mongoose-types": ">=1.0.3"
+    , "bcrypt": ">=0.5.0"
   }
 }

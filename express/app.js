@@ -4,9 +4,72 @@
  */
 
 var express = require('express')
-  , routes = require('./routes');
+  , routes = require('./routes')
+  , everyauth = require('everyauth')
+  , Promise = everyauth.Promise;
 
 var app = module.exports = express.createServer();
+var conf = require('./conf');
+
+//mongodb
+var mongoose = require('mongoose')
+, Schema = mongoose.Schema
+, ObjectId = mongoose.SchemaTypes.ObjectId;
+
+var UserSchema = new Schema({})
+  , User;
+
+//Auth
+var mongooseAuth = require('./mongoose_auth_index');
+
+mongoose.model('User', UserSchema);
+
+mongoose.connect('mongodb://localhost/data/db');
+
+User = mongoose.model('User');
+
+UserSchema.plugin(mongooseAuth, {
+    everymodule: {
+      everyauth: {
+          User: function () {
+            return User;
+          }
+      }
+    }
+  , facebook: {
+      everyauth: {
+          myHostname: 'http://uptoken.org'
+        , appId: conf.fb.appId
+        , appSecret: conf.fb.appSecret
+        , redirectPath: '/collect'
+
+      }
+    }
+
+  , password: {
+        loginWith: 'login'
+      , extraParams: {
+          votes: Array,
+      //      phone: String,
+          name: {
+                first: String
+              , last: String
+            }
+        }
+      , everyauth: {
+            getLoginPath: '/login'
+          , postLoginPath: '/login'
+          , loginView: 'login.jade'
+          , getRegisterPath: '/register'
+          , postRegisterPath: '/register'
+          , registerView: 'register.jade'
+          , loginSuccessRedirect: '/'
+          , registerSuccessRedirect: '/collect'
+        }
+    }
+});
+
+everyauth.helpExpress(app)
 
 // Configuration
 
@@ -19,6 +82,7 @@ app.configure(function(){
   app.use(express.session({ secret: "jalad tanagra" }));
   app.use(app.router);
   app.use(express.static(__dirname + '/public'));
+  app.use(express.logger());
 });
 
 app.configure('development', function(){
@@ -50,7 +114,7 @@ app.get('/collect/', function(req, res) {
 	});
 });
 
-pp.get('/user/', function(req, res) {
+app.get('/user/', function(req, res) {
 	res.render('user', {
 		title: 'UpToken.org'
 	});
