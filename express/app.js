@@ -8,7 +8,6 @@ var express = require('express')
   , everyauth = require('everyauth')
   , Promise = everyauth.Promise;
 
-var app = module.exports = express.createServer();
 var conf = require('./conf');
 
 //mongodb
@@ -71,6 +70,8 @@ UserSchema.plugin(mongooseAuth, {
 
 everyauth.helpExpress(app)
 
+var app = module.exports = express.createServer();
+
 // Configuration
 
 app.configure(function(){
@@ -79,7 +80,7 @@ app.configure(function(){
   app.use(express.bodyParser());
   app.use(express.methodOverride());
   app.use(express.cookieParser());
-  app.use(express.session({ secret: "jalad tanagra" }));
+  app.use(express.session({ secret: conf.mongoose.secret }));
   app.use(app.router);
   app.use(express.static(__dirname + '/public'));
   app.use(express.logger());
