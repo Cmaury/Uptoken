@@ -3,29 +3,25 @@
  * Module dependencies.
  */
 
-var express = require('express')
-  , routes = require('./routes')
-  , everyauth = require('everyauth')
-  , Promise = everyauth.Promise;
+var express = require('express');
+//var IdeaProvider = require('./ideaprovider-mongodb').IdeaProvider;
+var UsersDb = require ('./users').UsersDb;
 
 var conf = require('./conf');
 
-//mongodb
+var everyauth = require('./node_modules/everyauth')
+  , Promise = everyauth.Promise;
+
+everyauth.debug = true;
+
 var mongoose = require('mongoose')
-, Schema = mongoose.Schema
-, ObjectId = mongoose.SchemaTypes.ObjectId;
+  , Schema = mongoose.Schema
+  , ObjectId = mongoose.SchemaTypes.ObjectId;
 
 var UserSchema = new Schema({})
   , User;
 
-//Auth
 var mongooseAuth = require('./mongoose_auth_index');
-
-mongoose.model('User', UserSchema);
-
-mongoose.connect('mongodb://localhost/data/db');
-
-User = mongoose.model('User');
 
 UserSchema.plugin(mongooseAuth, {
     everymodule: {
@@ -40,7 +36,7 @@ UserSchema.plugin(mongooseAuth, {
           myHostname: 'http://uptoken.org'
         , appId: conf.fb.appId
         , appSecret: conf.fb.appSecret
-        , redirectPath: '/collect'
+        , redirectPath: '/'
 
       }
     }
@@ -63,12 +59,17 @@ UserSchema.plugin(mongooseAuth, {
           , postRegisterPath: '/register'
           , registerView: 'register.jade'
           , loginSuccessRedirect: '/'
-          , registerSuccessRedirect: '/collect'
+          , registerSuccessRedirect: '/'
         }
     }
 });
+// Adds login: String
 
-everyauth.helpExpress(app)
+mongoose.model('User', UserSchema);
+
+mongoose.connect('mongodb://localhost/user');
+
+User = mongoose.model('User');
 
 var app = module.exports = express.createServer();
 
@@ -79,19 +80,21 @@ app.configure(function(){
   app.set('view engine', 'jade');
   app.use(express.bodyParser());
   app.use(express.methodOverride());
-  app.use(express.cookieParser());
-  app.use(express.session({ secret: conf.mongoose.secret }));
-  app.use(app.router);
+  app.use(require('stylus').middleware({ src: __dirname + '/public' }));
+//  app.use(app.router);
   app.use(express.static(__dirname + '/public'));
-  app.use(express.logger());
+//next
+  app.use(express.cookieParser());
+  app.use(express.session({ secret: conf.mongoose.secret}));
+  app.use(mongooseAuth.middleware());
 });
 
 app.configure('development', function(){
-  app.use(express.errorHandler({ dumpExceptions: true, showStack: true }));
+  app.use(express.errorHandler({ dumpExceptions: true, showStack: true })); 
 });
 
 app.configure('production', function(){
-  app.use(express.errorHandler());
+  app.use(express.errorHandler()); 
 });
 
 // Routes

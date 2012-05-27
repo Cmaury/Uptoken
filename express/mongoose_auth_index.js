@@ -1,13 +1,13 @@
-var everyauth = require('everyauth');
+var everyauth = require('./node_modules/everyauth');
 
 everyauth.everymodule.configurable({
   'User': 'A function that returns the mongoose User model (not Schema).'
 });
 
 var Modules = {
-    everymodule: require('./lib/modules/everymodule')
-  , password: require('./lib/modules/password')
-  , facebook: require('./lib/modules/facebook')
+    everymodule: require('./node_modules/everyauth/lib/modules/everymodule')
+  , password: require('./node_modules/everyauth/lib/modules/password')
+  , facebook: require('./node_modules/everyauth/lib/modules/facebook')
 };
 
 
