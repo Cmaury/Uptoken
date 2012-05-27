@@ -1,0 +1,16 @@
+head
+
+body 
+	.header
+		include header.jade
+
+	.main.well.span4.offest4
+		- if (alert)
+			.alert
+				p= alert
+		h1= title
+		p Welcome to #{title}
+		.collect
+			form(action='/collect', method='POST').form
+				input(type='text', name='collect_code', placeholder='Enter code from your UpToken')
+				input.btn.btn-success.btn.pull-right(type='submit', value='Collect')

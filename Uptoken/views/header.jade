@@ -1,0 +1,19 @@
+block head
+div.navbar-fixed-top.navbar
+	div.navbar-inner
+		div.container
+			a.brand(href="/") UpToken.org
+			ul.nav.pull-right
+				- if (!everyauth.loggedIn)
+					li#signup
+						a(href='/register') Sign Up
+					li#login
+						a(href="/login") Log In
+				-else
+					-if (user.fb.name.first)
+						a.brand(href="/user/profile")= user.fb.name.first
+						
+					-else	
+						a.brand(href="/user/profile")= user.login	
+					li
+						a(href='/logout') Logout
