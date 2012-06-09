@@ -5,10 +5,9 @@ div.navbar-fixed-top.navbar
 			a.brand(href="/") UpToken.org
 			ul.nav.pull-right
 				- if (!everyauth.loggedIn)
-					li#signup
-						a(href='/register') Sign Up
 					li#login
-						a(href="/login") Log In
+						a(href='/auth/facebook', style='border: 0px')
+							img(style='border: 0px', src='/images/login-facebook.png')
 				-else
 					-if (user.fb.name.first)
 						a.brand(href="/user/profile")= user.fb.name.first

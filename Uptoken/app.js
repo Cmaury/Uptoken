@@ -35,11 +35,12 @@ UserSchema.plugin(mongooseAuth, {
           myHostname: 'http://uptoken.org'
         , appId: conf.fb.appId
         , appSecret: conf.fb.appSecret
+        , scope: 'email'
         , redirectPath: '/'
 
       }
     }
-
+/*
   , password: {
         loginWith: 'login'
       , extraParams: {
@@ -49,7 +50,7 @@ UserSchema.plugin(mongooseAuth, {
                 first: String
               , last: String
             }
-        }
+        } */
       , everyauth: {
             getLoginPath: '/login'
           , postLoginPath: '/login'
@@ -60,7 +61,7 @@ UserSchema.plugin(mongooseAuth, {
           , loginSuccessRedirect: '/'
           , registerSuccessRedirect: '/'
         }
-    }
+    //}
 });
 // Adds login: String
 
@@ -152,9 +153,9 @@ app.get('/logout', function (req, res) {
 });
 
 app.get('/error/1', function (req, res) {
-    res.render("register.jade", {locals: {
+    res.render("index.jade", {locals: {
         title: "Oops",
-        error: "sign up to collect your upvote."
+        alert: "sign up to collect your upvote."
       }
     });
 });
