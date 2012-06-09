@@ -132,7 +132,7 @@ UsersDb.prototype.findUser = function(userId, callback) {
       if( error ) callback(error)
       else {
         user_collection.findOne({"_id": user_collection.db.bson_serializer.ObjectID.createFromHexString(userId)}, function(error, results) {
-          console.log("hello" + results);
+          console.log("Hello" + results);
           if( error ) callback(error)
           else callback(null, results, ideas)
         });
