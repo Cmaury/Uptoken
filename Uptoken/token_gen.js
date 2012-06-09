@@ -1,5 +1,5 @@
 var char_set="0123456789";
-for(var j=0; j<10; j++) {
+for(var j=0; j<100; j++) {
 	var token = "";
 	for(var i=0; i <6; i++) {
 		var rnum= Math.floor(Math.random()*char_set.length);
