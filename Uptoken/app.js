@@ -155,7 +155,7 @@ app.get('/logout', function (req, res) {
 app.get('/error/1', function (req, res) {
     res.render("index.jade", {locals: {
         title: "Oops",
-        alert: "sign up to collect your upvote."
+        alert: "Sign up to collect your upvote."
       }
     });
 });
