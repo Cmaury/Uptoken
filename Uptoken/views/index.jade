@@ -1,16 +1,27 @@
 head
 
 body 
-	.header
-		include header.jade
-
-	.main.well.span4.offest4
+	.container
 		- if (alert)
 			.alert
 				p= alert
-		h1= title
-		p Welcome to #{title}
-		.collect
-			form(action='/collect', method='POST').form
-				input(type='text', name='collect_code', placeholder='Enter code from your UpToken')
-				input.btn.btn-success.btn.pull-right(type='submit', value='Collect')
+		.well
+			.row-fluid
+				.left-column.span6
+					.center
+						br
+						br
+						br
+						h1 Got an UpToken?						
+						br
+						p.lead Let someone know when they have done something nice, said something funny, or anything else you find worthy of an upvote. Give them an Uptoken to show that you have noticed.
+						br
+
+					.collect.center
+						form(action='/collect', method='POST').form
+							input(type='text', name='collect_code', placeholder='Enter code from your UpToken')
+							input.btn.btn-success.btn.center(type='submit', value='Collect', style='margin-left=15px')
+				.right-column.span6
+					.img-container.span6.center
+						.img
+							img(style='border: 0px', src='/images/photo.png')

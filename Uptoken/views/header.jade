@@ -1,9 +1,9 @@
 block head
-div.navbar-fixed-top.navbar
-	div.navbar-inner
-		div.container
-			a.brand(href="/") UpToken.org
-			ul.nav.pull-right
+.container
+	.navbar
+			a.brand(href="/") 
+				img(style='border: 0px', src='/images/logo.png')
+			ul.nav.pull-right(style='padding-top: 12px')
 				- if (!everyauth.loggedIn)
 					li#login
 						a(href='/auth/facebook', style='border: 0px')
