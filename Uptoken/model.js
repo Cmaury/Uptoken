@@ -70,11 +70,7 @@ UserScore.prototype.findOne = function(user_id, callback) {
            userScore_collection.save({"user_id": user_id}, {"score": 0}, function(error, results) {
            console.log("result " + results._id)
            if( error) callback(error);
-           else {
-            results = userScore_collection.findOne({"_id": results._id});
-            console.log("newobj "+ results)
-            callback(null, results)
-           }
+           else callback(null, results);
            });
          }
         if( error ) callback(error);
