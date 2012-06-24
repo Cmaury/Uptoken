@@ -143,9 +143,8 @@ app.get('/user/profile', function(req, res){
         }
         else score = results.score;
       res.render("user.jade", {locals: {
-        title: req.user.login + "'s Profile",
-        score: score,
-        alert: error
+        title: user.fb.name.first + "'s Profile",
+        score: score
       }
     });
     })
