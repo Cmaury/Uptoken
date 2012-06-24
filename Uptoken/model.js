@@ -71,7 +71,7 @@ UserScore.prototype.findOne = function(user_id, callback) {
            else callback(null, results);
            });
          }
-        console.log("results" results.user_id);
+        console.log("results" + results.user_id);
         if( error ) callback(error);
         else callback(null, results);
         });
