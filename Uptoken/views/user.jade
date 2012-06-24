@@ -1,7 +1,7 @@
 body
 	.main.well.span4.offest4
-		-if (alert != 'profile')
-					.alert.alert-success
-						p= alert
+		-if (alert)
+			.alert.alert-success
+				p= alert
 		h1 user.fb.name.first
 		h1 #{score} Upvotes
