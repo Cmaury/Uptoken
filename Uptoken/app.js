@@ -141,7 +141,7 @@ app.get('/user/profile', function(req, res){
       res.render("user.jade", {locals: {
         title: req.user.login + "'s Profile",
         score: results.score,
-        alert: req.params.alert
+        alert: error
       }
     });
     })
