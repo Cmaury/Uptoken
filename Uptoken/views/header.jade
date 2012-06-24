@@ -10,9 +10,11 @@ block head
 							img(style='border: 0px', src='/images/login-facebook.png')
 				-else
 					-if (user.fb.name.first)
-						a(href="/user/profile")= user.fb.name.first
+						li
+							a(href="/user/profile")= user.fb.name.first
 						
-					-else	
-						a(href="/user/profile")= user.login	
-					
-					a.pull-right(href='/logout') Logout
+					-else
+						li	
+							a(href="/user/profile")= user.login	
+					li
+						a.pull-right(href='/logout') Logout
