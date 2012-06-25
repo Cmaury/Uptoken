@@ -3,7 +3,7 @@ block head
 	.navbar
 			a.brand(href="/") 
 				img(style='border: 0px', src='/images/logo.png')
-			ul.nav.pull-right(style='padding-top: 12px')
+			.nav.pull-right(style='padding-top: 12px')
 				- if (!everyauth.loggedIn)
 					li#login
 						a(href='/auth/facebook', style='border: 0px')
@@ -14,10 +14,10 @@ block head
 							a(href='/user/profile', style='border: 0px') 
 								img(style='border=0px', src='http://graph.facebook.com/' + user.fb.id + '/picture')
 						li
-							a(href="/user/profile", style='padding=0 34px 0 0')= user.fb.name.first
+							a(href="/user/profile")= user.fb.name.first
 						
 					-else
 						li	
-							a(href="/user/profile", style='padding=0 34px 0 0)= user.login	
+							a(href="/user/profile")= user.login	
 					li
-						a.pull-right(href='/logout', style='padding=0 34px 0 0'') Logout
+						a.pull-right(href='/logout') Logout
