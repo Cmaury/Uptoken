@@ -13,11 +13,11 @@ block head
 						li
 							a(href='/user/profile', style='padding-top: 0px') 
 								img(style='padding-top: 0px', src='http://graph.facebook.com/' + user.fb.id + '/picture')
-						li
+						li.nav-h3
 							a(href="/user/profile")= user.fb.name.first
 						
 					-else
 						li	
 							a(href="/user/profile")= user.login	
-					li
+					li.nav-h3
 						a.pull-right(href='/logout') Logout
