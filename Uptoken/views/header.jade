@@ -14,10 +14,10 @@ block head
 							a(href='/user/profile', style='border: 0px') 
 								img(style='border=0px', src='http://graph.facebook.com/' + user.fb.id + '/picture')
 						li
-							h3= a(href="/user/profile")= user.fb.name.first
+							a(href="/user/profile",style='padding-top=34px')= user.fb.name.first
 						
 					-else
 						li	
-							h3= a(href="/user/profile")= user.login	
+							a(href="/user/profile",style='padding-top=34px')= user.login	
 					li
-						h3= a.pull-right(href='/logout') Logout
+						a.pull-right(href='/logout',style='padding-top=34px') Logout
