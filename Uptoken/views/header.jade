@@ -5,7 +5,7 @@ block head
 				img(style='border: 0px', src='/images/logo.png')
 			ul.nav.pull-right
 				- if (!everyauth.loggedIn)
-					li#login
+					li#login(style='padding-top:12px')
 						a(href='/auth/facebook', style='border: 0px')
 							img(style='border: 0px', src='/images/login-facebook.png')
 				-else
