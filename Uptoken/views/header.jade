@@ -11,8 +11,7 @@ block head
 				-else
 					-if (user.fb.name.first)
 						li
-							.img
-								img(style='border: 0px', src='http://graph.facebook.com/' + user.fb.id + '/picture')
+							img(style='border: 0px', src='http://graph.facebook.com/' + user.fb.id + '/picture')
 						li
 							a(href="/user/profile")= user.fb.name.first
 						
