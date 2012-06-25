@@ -10,6 +10,8 @@ block head
 							img(style='border: 0px', src='/images/login-facebook.png')
 				-else
 					-if (user.fb.name.first)
+						.img
+							img(style='border: 0px', src='graph.facebook.com' + user.fb.id + 'picture')
 						li
 							a(href="/user/profile")= user.fb.name.first
 						
