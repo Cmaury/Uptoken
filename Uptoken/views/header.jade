@@ -12,7 +12,7 @@ block head
 					-if (user.fb.name.first)
 						li
 							a(href='/user/profile', style='border: 0px') 
-								img(style='padding-top=0px', src='http://graph.facebook.com/' + user.fb.id + '/picture')
+								img(style='padding-top:0px', src='http://graph.facebook.com/' + user.fb.id + '/picture')
 						li
 							a(href="/user/profile")= user.fb.name.first
 						
