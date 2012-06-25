@@ -3,7 +3,7 @@ block head
 	.navbar
 			a.brand(href="/") 
 				img(style='border: 0px', src='/images/logo.png')
-			ul.nav.pull-right(style='padding-top: 12px')
+			ul.nav.pull-right
 				- if (!everyauth.loggedIn)
 					li#login
 						a(href='/auth/facebook', style='border: 0px')
