@@ -1,7 +1,10 @@
 body
-	.main.well.span4.offest4
+	.container
 		-if (alert)
-			.alert.alert-success
-				p= alert
-		h1= user.fb.name.first
-		h1 #{score} Upvotes
+					.alert.alert-success
+						p= alert
+				
+		.row-fluid
+			.well
+				h1= user.fb.name.first
+				h1 #{score} Upvotes
