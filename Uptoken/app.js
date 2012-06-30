@@ -140,7 +140,7 @@ app.get('/user/profile', function(req, res){
     user_id = req.user._id.toString()
     console.log("routes " + user_id);
     userScore.findOne(user_id, function(error, results) {
-      if(!results.score){
+      if(!results){
           score= 0
         }
         else score = results.score;
