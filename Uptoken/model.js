@@ -94,7 +94,7 @@ UserScore.prototype.increment = function(user_id, callback) {
           });
          }
           if( error ) callback(error)
-          else  callback(null)
+          else  callback(results)
         });
       }
     });
