@@ -130,7 +130,7 @@ app.post('/collect', function(req, res){
               }
               else score = results.score;
               res.render('user.jade', {locals: {
-                score: score
+                score: score,
                 alert: 'Karma-Collected'
               }});
           });
