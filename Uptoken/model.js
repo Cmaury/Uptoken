@@ -103,10 +103,12 @@ UserScore.prototype.increment = function(user_id, callback) {
           userScore_collection.update({"user_id": user_id}, {$inc: {"score": 1}}, true, function(error, results) {
             console.log("3 "+ results );
             if( error ) callback(error)
-            else  callback(null)
+            else  callback(null)  
           });
+          callback(null) 
         }
-      }
+        }
+       } 
     });
 };
 
