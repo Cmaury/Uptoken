@@ -124,7 +124,7 @@ app.post('/collect', function(req, res){
         console.log("redirect " + alert);
         if (alert == null) {
           userScore.increment(user_id, function(response){
-              res.render('/user/profile', {locals: {
+              res.render('user.jade', {locals: {
                 alert: 'Karma-Collected'
               }});
           });
