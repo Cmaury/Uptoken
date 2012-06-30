@@ -68,7 +68,6 @@ UserScore.prototype.findOne = function(user_id, callback) {
         if(!results) {
           console.log("no user found")
           userScore_collection.save({"user_id": user_id},  function(error, results) {
-           //console.log("result " + results)
           if( error) callback(error);
           else callback(null, results);
           });
@@ -85,12 +84,31 @@ UserScore.prototype.increment = function(user_id, callback) {
       if( error ) callback(error)
       else {
         console.log("3 " + user_id)
-        userScore_collection.update({"user_id": user_id}, {$inc: {"score": 1}}, true, function(error, results) {
+        userScore_collection.findOne({"user_id": user_id}, function(error, results) {
+        //If new user create user + increment score
+        if( error) callback(error)
+        if(!results) {
+          console.log("no user found")
+          userScore_collection.save({"user_id": user_id},  function(error, results) {
+          if( error) callback(error)
+          else {
+            userScore_collection.update({"user_id": user_id}, {$inc: {"score": 1}}, true, function(error, results) {
+            console.log("3 "+ results );
+            if( error ) callback(error)
+            else  callback(null)
+            } 
+          } 
+         } 
+        } 
+        //If existing user increment score
+        else {
+          userScore_collection.update({"user_id": user_id}, {$inc: {"score": 1}}, true, function(error, results) {
           console.log("3 "+ results );
           if( error ) callback(error)
           else  callback(null)
-        });
-      }
+          });
+        }
+     } 
     });
 };
 
