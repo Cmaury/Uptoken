@@ -84,15 +84,15 @@ UserScore.prototype.increment = function(user_id, callback) {
       if( error ) callback(error)
       else {
         console.log("3 " + user_id)
-        userScore_collection.update({"user_id": user_id}, {$inc: {"score": 1}}, true, function(error, results) {
-          if(!results) {
+        userScore_collection.update({"user_id": user_id}, { $set {"user_id": user_id}, $inc: {"score": 1}}, true, function(error, results) {
+         /* if(!results) {
           console.log("no user found")
           entry =  {"user_id": user_id, "score": 1}
           userScore_collection.save(entry,  function(error, results) {
           if( error) callback(error);
           else callback(null, results);
           });
-         }
+         } */
           if( error ) callback(error)
           else  callback(results)
         });
