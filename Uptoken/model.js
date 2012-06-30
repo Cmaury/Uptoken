@@ -92,7 +92,7 @@ UserScore.prototype.increment = function(user_id, callback) {
           userScore_collection.save(entry,  function(error, results) {
           if( error) callback(error);
           else {
-           results = {"score": 1} 
+           var results = {"score": 1} 
            callback(null, results); 
           }
           });
