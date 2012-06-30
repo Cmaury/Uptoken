@@ -123,7 +123,7 @@ app.post('/collect', function(req, res){
       tokensDB.isValid(user_id, token, function(alert) {
         console.log("redirect " + alert);
         if (alert == null) {
-          userScore.increment(user_id, function(results){
+          userScore.increment(user_id, function(error, results){
               res.render('user.jade', {locals: {
                 score: results.score,
                 alert: 'Karma-Collected'
