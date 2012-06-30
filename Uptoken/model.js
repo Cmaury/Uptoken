@@ -83,12 +83,29 @@ UserScore.prototype.increment = function(user_id, callback) {
     this.getCollection(function(error, userScore_collection) {
       if( error ) callback(error)
       else {
-        console.log("3 " + user_id)
-        userScore_collection.update({"user_id": user_id}, {$inc: {"score": 1}}, true, function(error, results) {
-          console.log("3 "+ results );
-          if( error ) callback(error)
-          else  callback(null)
-        });
+        userScore_collection.findOne({"user_id": user_id}, function(error, results) {
+        if(!results) {
+          console.log("no user found")
+          userScore_collection.save({"user_id": user_id},  function(error, results) {
+          if( error) callback(error);
+          else {
+            console.log("3 " + user_id)
+            userScore_collection.update({"user_id": user_id}, {$inc: {"score": 1}}, true, function(error, results) {
+            console.log("3 "+ results );
+            if( error ) callback(error)
+            else  callback(null)
+          });
+          }
+          });
+         }
+        else{ 
+          console.log("3 " + user_id)
+          userScore_collection.update({"user_id": user_id}, {$inc: {"score": 1}}, true, function(error, results) {
+            console.log("3 "+ results );
+            if( error ) callback(error)
+            else  callback(null)
+          });
+        }
       }
     });
 };
