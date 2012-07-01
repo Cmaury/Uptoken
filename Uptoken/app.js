@@ -147,9 +147,7 @@ app.get('/user/profile', function(req, res){
           score= 0
         }
       else {
-          console.log(results)
-          if (typeof results.score != int) score = 0
-          else score = results.score;
+           score = results.score;
          } 
       res.render("user.jade", {locals: {  
         score: score,
