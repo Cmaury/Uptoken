@@ -84,7 +84,7 @@ UserScore.prototype.increment = function(user_id, callback) {
       if( error ) callback(error)
       else {
         console.log("3 " + user_id)
-        userScore_collection.save({"user_id": user_id},  function(error, results) {
+        userScore_collection.findOne({"user_id": user_id},  function(error, results) {
         if( error ) callback(error)
         console.log(results)  
         /*if(!results) {
