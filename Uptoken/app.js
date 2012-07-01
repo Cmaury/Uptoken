@@ -125,7 +125,7 @@ app.post('/collect', function(req, res){
         if (alert == null) {
           userScore.increment(user_id, function(error, results){
               res.render('user.jade', {locals: {
-                score: results.score,
+                score: "results.score",
                 alert: 'Karma-Collected'
               }});
           });
