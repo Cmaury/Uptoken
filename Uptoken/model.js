@@ -99,7 +99,7 @@ UserScore.prototype.increment = function(user_id, callback) {
           });
          }
         else  userScore_collection.update({"user_id": user_id}, {$inc: {"score": 1}}, true, function(error, results) {
-          console.log(results)
+          var results = userScore_collection.findOne({"user_id": user_id}).score
           if( error ) callback(error);
           else callback(null, results);
          }); 
