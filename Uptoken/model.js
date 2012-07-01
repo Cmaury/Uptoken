@@ -101,6 +101,7 @@ UserScore.prototype.increment = function(user_id, callback) {
         else  userScore_collection.update({"user_id": user_id}, {$inc: {"score": 1}}, true, function(error, result) {
           if( error ) callback(error);
           else {
+            console.log("model " + results)
             callback(null, results);
           }
          }); 
