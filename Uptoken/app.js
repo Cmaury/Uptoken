@@ -146,7 +146,10 @@ app.get('/user/profile', function(req, res){
         console.log("no results")
           score= 0
         }
-        else score = results.score;
+        else {
+          console.log(results)
+          score = results.score;
+         } 
       res.render("user.jade", {locals: {  
         score: score,
         alert: ''
