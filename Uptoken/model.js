@@ -32,7 +32,7 @@ TokensDB.prototype.isValid = function(user_id, token, callback) {
 
 TokensDB.prototype.lastUser = function(token_collection, user_id, token_data, callback) {
         token_collection.findOne({'token':token}, function(error, token) {
-          console.log("1 " + user_id)
+          //console.log("1 " + user_id)
           if( user_id == token_data.users[token_data.users.length -1] ) callback('Bad Karma. You can\'t upvote yourself!')
           else TokensDB.prototype.upVote(token_collection, user_id, token_data, callback)
         });
@@ -40,7 +40,7 @@ TokensDB.prototype.lastUser = function(token_collection, user_id, token_data, ca
 
 TokensDB.prototype.upVote = function(token_collection, user_id, token_data, callback) {
   token_collection.update({ "token": token_data.token}, {$push: {"users": user_id, "timestamp":new Date()}}, function(error, token) {
-          console.log("2 " + user_id)
+          //console.log("2 " + user_id)
           callback(null);
         });
       };
@@ -63,10 +63,10 @@ UserScore.prototype.findOne = function(user_id, callback) {
     this.getCollection(function(error, userScore_collection) {
       if( error ) callback(error)
       else {
-        console.log("user "+ user_id);
+        //console.log("user "+ user_id);
         userScore_collection.findOne({"user_id": user_id}, function(error, results) {
         if(!results) {
-          console.log("no user found")
+          //console.log("no user found")
           userScore_collection.save({"user_id": user_id},  function(error, results) {
           if( error) callback(error);
           else callback(null, results);
@@ -83,12 +83,12 @@ UserScore.prototype.increment = function(user_id, callback) {
     this.getCollection(function(error, userScore_collection) {
       if( error ) callback(error)
       else {
-        console.log("3 " + user_id)
+        //console.log("3 " + user_id)
         userScore_collection.findOne({"user_id": user_id},  function(error, results) {
         if( error ) callback(error)
-        console.log(results)  
+        //console.log(results)  
         if(!results) {
-          console.log("no user found")
+          //console.log("no user found")
           entry =  {"user_id": user_id, "score": 1}
           userScore_collection.save(entry,  function(error, results) {
           if( error) callback(error);
@@ -101,7 +101,6 @@ UserScore.prototype.increment = function(user_id, callback) {
         else  userScore_collection.update({"user_id": user_id}, {$inc: {"score": 1}}, true, function(error, result) {
           if( error ) callback(error);
           else {
-            console.log("model " + results)
             callback(null, results);
           }
          }); 
@@ -128,7 +127,7 @@ UsersDb.prototype.findAll = function(callback) {
       if( error ) callback(error)
       else {
         user_collection.find().toArray(function(error, results) {
-          console.log(results);
+          //console.log(results);
           if( error ) callback(error)
           else callback(null, results)
         });
@@ -141,7 +140,7 @@ UsersDb.prototype.collect = function(userId, callback) {
     if( error ) callback(error)
     else {
       user_collection.update({"_id": user_collection.db.bson_serializer.ObjectID.createFromHexString(userId)}, "$score", upsert)
-      console.log(user_collection.findOne({"_id": user_collection.db.bson_serializer.ObjectID.createFromHexString(userId)}))
+      //console.log(user_collection.findOne({"_id": user_collection.db.bson_serializer.ObjectID.createFromHexString(userId)}))
       if( error ) callback(error)
       else callback(null, results)
     }  
@@ -151,11 +150,11 @@ UsersDb.prototype.collect = function(userId, callback) {
 
 UsersDb.prototype.findUser = function(userId, callback) {
     this.getCollection(function(error, user_collection) {
-      console.log(userId)
+      //console.log(userId)
       if( error ) callback(error)
       else {
         user_collection.findOne({"_id": user_collection.db.bson_serializer.ObjectID.createFromHexString(userId)}, function(error, results) {
-          console.log("Hello" + results);
+          //console.log("Hello" + results);
           if( error ) callback(error)
           else callback(null, results, ideas)
         });

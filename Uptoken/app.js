@@ -119,12 +119,12 @@ app.post('/collect', function(req, res){
     } 
     else {
       user_id = req.user._id.toString()
-      console.log(token);
+      //console.log(token);
       tokensDB.isValid(user_id, token, function(alert) {
-        console.log("redirect " + alert);
+        //console.log("redirect " + alert);
         if (alert == null) {
           userScore.increment(user_id, function(error, results){
-              console.log(results)
+              //console.log(results)
               res.render('user.jade', {locals: {
                 score: results.score + 1,
                 alert: 'Karma-Collected'
@@ -140,10 +140,10 @@ app.post('/collect', function(req, res){
 
 app.get('/user/profile', function(req, res){
     user_id = req.user._id.toString()
-    console.log("routes " + user_id);
+    //console.log("routes " + user_id);
     userScore.findOne(user_id, function(error, results) {
       if(!results){
-        console.log("no results")
+        //console.log("no results")
           score= 0
         }
         else score = results.score;
@@ -180,4 +180,4 @@ app.get('/error/:alert', function (req, res) {
 mongooseAuth.helpExpress(app);
 
 app.listen(4000);
-console.log("Express server listening on port %d in %s mode", app.address().port, app.settings.env);
+//console.log("Express server listening on port %d in %s mode", app.address().port, app.settings.env);
