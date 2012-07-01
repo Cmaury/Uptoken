@@ -146,7 +146,7 @@ app.get('/user/profile', function(req, res){
         console.log("no results")
           score= 0
         }
-        else {
+      else {
           console.log(results)
           score = results.score;
          } 
