@@ -65,6 +65,7 @@ UserScore.prototype.findOne = function(user_id, callback) {
       else {
         //console.log("user "+ user_id);
         userScore_collection.findOne({"user_id": user_id}, function(error, results) {
+        if( error ) callback(error);
         if(!results) {
           //console.log("no user found")
           userScore_collection.save({"user_id": user_id},  function(error, results) {
@@ -76,7 +77,6 @@ UserScore.prototype.findOne = function(user_id, callback) {
            } 
           });
          }
-        if( error ) callback(error);
         else {
           console.log("this shouldnt be firing")
           callback(null, results);
