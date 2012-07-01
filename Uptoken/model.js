@@ -71,12 +71,16 @@ UserScore.prototype.findOne = function(user_id, callback) {
           if( error ) callback(error);
           else {
             var results = {"score": 0}
+            console.log("new user" +results)
             callback(null, results);
            } 
           });
          }
         if( error ) callback(error);
-        else callback(null, results);
+        else {
+          console.log("this shouldnt be firing")
+          callback(null, results);
+        }
         });
       }
     });
@@ -97,7 +101,7 @@ UserScore.prototype.increment = function(user_id, callback) {
           if( error) callback(error);
           else {
            var results = {"score": 0}
-           console.log(results) 
+           //console.log(results) 
            callback(null, results); 
           }
           });
@@ -105,7 +109,6 @@ UserScore.prototype.increment = function(user_id, callback) {
         else  userScore_collection.update({"user_id": user_id}, {$inc: {"score": 1}}, true, function(error, result) {
           if( error ) callback(error);
           else {
-            console.log("this shouldnt be firing")
             callback(null, results);
           }
          }); 
