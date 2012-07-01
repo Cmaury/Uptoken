@@ -148,7 +148,7 @@ app.get('/user/profile', function(req, res){
         }
       else {
           console.log(results)
-          if (results.score == NaN) score = 0
+          if (typeof results.score != int) score = 0
           else score = results.score;
          } 
       res.render("user.jade", {locals: {  
