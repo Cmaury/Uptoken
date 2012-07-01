@@ -142,8 +142,16 @@ app.get('/user/profile', function(req, res){
     user_id = req.user._id.toString()
     //console.log("routes " + user_id);
     userScore.findOne(user_id, function(error, results) {
+      if(!results.score){
+        console.log("no results")
+          score= 0
+        }
+        else {
+          console.log(results)
+          score = results.score + 0 ;
+         } 
       res.render("user.jade", {locals: {  
-        score: results.score,
+        score: score,
         alert: ''
       }
     });
