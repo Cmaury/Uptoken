@@ -11,7 +11,7 @@ var conf = require('./conf');
 var everyauth = require('everyauth')
   , Promise = everyauth.Promise;
 
-everyauth.debug = true;
+//everyauth.debug = true;
 
 var mongoose = require('mongoose')
   , Schema = mongoose.Schema
@@ -127,7 +127,7 @@ app.post('/collect', function(req, res){
               //console.log(results)
               res.render('user.jade', {locals: {
                 score: results.score + 1,
-                alert: 'Karma-Collected'
+                alert: 'Karma Collected. Now pass it on!'
               }});
           });
         }
